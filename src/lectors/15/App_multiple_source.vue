@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import { ref, reactive } from 'vue';
+import { ref, reactive, watch } from 'vue';
 
 export default {
     setup () {

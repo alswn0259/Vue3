@@ -14,10 +14,7 @@ export default {
         const title = ref('');
         const contents = ref('');
 
-        const save = (title, contents) => {
-            console.log('저장');
-        }
-
+       
         // 콜백함수 안의 데이터 변경이 일어나면 실행됨
         watchEffect(() => {
             console.log('watchEffect');
@@ -25,7 +22,7 @@ export default {
             console.log(contents.value);
         });
 
-        return { title, contents, save };
+        return { title, contents };
     }
 }
 </script>
