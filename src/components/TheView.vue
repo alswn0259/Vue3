@@ -3,25 +3,16 @@
         <main>
             <div class="container py-4">
                 <div class="row g-3">
-                <div class="col col-4">
-                    <AppCard title="제목1" contents="내용1"/>
+                    <div v-for="post in posts" :key="post.id" class="col col-4">
+                        <AppCard 
+                            :title="post.title" 
+                            :contents="post.contents" 
+                            :type="post.type" 
+                            :isLike="post.isLike"
+                            @toggle-like="post.isLike = !post.isLike"></AppCard>
+                        <!-- <button @click="post.isLike = !post.isLike">toggle</button> -->
+                    </div>
                 </div>
-                <div class="col col-4">
-                    <AppCard :title="post.title" :contents="post.contents"/>
-                </div>
-                <div class="col col-4">
-                    <AppCard/>
-                </div>
-                <div class="col col-4">
-                    <AppCard/>
-                </div>
-                <div class="col col-4">
-                    <AppCard/>
-                </div>
-                <div class="col col-4">
-                    <AppCard/>  
-                </div>
-            </div>
             </div>
         </main>
     </div>
@@ -38,10 +29,18 @@ export default {
     setup () {
         const post = reactive({
             title: '제목2',
-            contents: '내용2'
-        })
+            contents: '내용2',
+        });
+        const posts = reactive([
+            { id: 1, title: '제목1',  contents: '내용1', isLike: true, type: 'news' },
+            { id: 2, title: '제목2',  contents: '내용2', isLike: true, type: 'news' },
+            { id: 3, title: '제목3',  contents: '내용3', isLike: true, type: 'news' },
+            { id: 4, title: '제목4',  contents: '내용4', isLike: true, type: 'news' },
+            { id: 5, title: '제목5',  contents: '내용5', isLike: false, type: 'notice' },
+            { id: 6, title: '제목6',  contents: '내용6', isLike: false, type: 'notice' },
+        ]);
         
-        return { post };
+        return { post, posts };
     }
 }
 </script>

@@ -1,7 +1,6 @@
 <template>
     <div>
         <TheNav/>
-        <TheNavbar/>
         <TheView/>
     </div>
 </template>
