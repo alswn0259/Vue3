@@ -1,23 +1,23 @@
 <template>
     <div>
-        <p>{{ msg }}</p>
-        <p v-text="msg"></p>
-        <p v-html="htmlStr"></p>
-        <p v-text="htmlStr"></p>
+        <TheNav/>
+        <TheView/>
     </div>
 </template>
 
 <script>
-import { ref } from '@vue/reactivity'
-export default {
-    setup () {
-        const msg = ref('안녕하세요');
-        const htmlStr = ref('<strong>안녕!!</strong>');
+import TheNav from './components/TheNav.vue';
+import TheView from './components/TheView.vue';
 
-        return {
-            msg,
-            htmlStr
-        }
+export default {
+    components: {
+        TheNav,
+        TheView
+    },
+    setup () {
+        
+
+        return {}
     }
 }
 </script>
