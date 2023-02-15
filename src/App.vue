@@ -1,6 +1,7 @@
 <template>
     <div>
         <TheNav/>
+        <TheNavbar/>
         <TheView/>
     </div>
 </template>
@@ -15,8 +16,7 @@ export default {
         TheView
     },
     setup () {
-        
-
+    
         return {}
     }
 }
