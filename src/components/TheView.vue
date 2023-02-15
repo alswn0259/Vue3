@@ -2,6 +2,10 @@
     <div>
         <main>
             <div class="container py-4">
+                <PostCreate @create-post="createPost"></PostCreate>
+
+                <hr class="my-4"/>
+                
                 <div class="row g-3">
                     <div v-for="post in posts" :key="post.id" class="col col-4">
                         <AppCard 
@@ -21,10 +25,12 @@
 <script>
 import { reactive } from '@vue/reactivity';
 import AppCard from './AppCard.vue';
+import PostCreate from './PostCreate.vue';
 
 export default {
     components: {
-        AppCard
+        AppCard,
+        PostCreate,
     },
     setup () {
         const post = reactive({
@@ -39,8 +45,10 @@ export default {
             { id: 5, title: '제목5',  contents: '내용5', isLike: false, type: 'notice' },
             { id: 6, title: '제목6',  contents: '내용6', isLike: false, type: 'notice' },
         ]);
-        
-        return { post, posts };
+        const createPost = newTitle => {
+            console.log('newTitle: ', newTitle);
+        }
+        return { post, posts, createPost };
     }
 }
 </script>

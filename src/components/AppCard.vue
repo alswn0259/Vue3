@@ -47,7 +47,6 @@ export default {
     setup (props, context) {
         // const style = useCssModule();
 
-        console.log('props.title: ', props.title);
         const typeName = computed(() => props.type === 'news' ? '뉴스' : '공지사항');
         const isLikeClass = computed(() => props.isLike ? 'btn-danger' : 'btn-outline-danger');
 
