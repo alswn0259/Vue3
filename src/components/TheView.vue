@@ -17,20 +17,32 @@
                         <!-- <button @click="post.isLike = !post.isLike">toggle</button> -->
                     </div>
                 </div>
+
+                <hr class="my-4">
+                <!-- <LabelInput :model-value="userName" @update:modelValue="value => (userName = value)"></LabelInput> -->
+                <LabelInput v-model="userName" label="이름"></LabelInput>
+                <LabelTitle v-model:title="userName" label="이름"></LabelTitle>
+                <UserName v-model:firstName="firstName" v-model:lastName="lastName"></UserName>
             </div>
         </main>
     </div>
 </template>
 
 <script>
-import { reactive } from '@vue/reactivity';
+import { ref, reactive } from '@vue/reactivity';
 import AppCard from './AppCard.vue';
 import PostCreate from './PostCreate.vue';
+import LabelInput from './LabelInput.vue';
+import LabelTitle from './LabelTitle.vue';
+import UserName from './UserName.vue';
 
 export default {
     components: {
         AppCard,
         PostCreate,
+        LabelInput,
+        LabelTitle,
+        UserName,
     },
     setup () {
         const post = reactive({
@@ -45,10 +57,15 @@ export default {
             { id: 5, title: '제목5',  contents: '내용5', isLike: false, type: 'notice' },
             { id: 6, title: '제목6',  contents: '내용6', isLike: false, type: 'notice' },
         ]);
-        const createPost = newTitle => {
-            console.log('newTitle: ', newTitle);
+        const createPost = newPost => {
+            console.log('newPost: ', newPost);
+            posts.push(newPost);
         }
-        return { post, posts, createPost };
+
+        const userName = ref('');
+        const firstName = ref('');
+        const lastName = ref('');
+        return { post, posts, createPost, userName, firstName, lastName };
     }
 }
 </script>
