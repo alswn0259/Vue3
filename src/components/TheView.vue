@@ -1,71 +1,45 @@
 <template>
-    <div>
-        <main>
-            <div class="container py-4">
-                <PostCreate @create-post="createPost"></PostCreate>
-
-                <hr class="my-4"/>
-                
-                <div class="row g-3">
-                    <div v-for="post in posts" :key="post.id" class="col col-4">
-                        <AppCard 
-                            :title="post.title" 
-                            :contents="post.contents" 
-                            :type="post.type" 
-                            :isLike="post.isLike"
-                            @toggle-like="post.isLike = !post.isLike"></AppCard>
-                        <!-- <button @click="post.isLike = !post.isLike">toggle</button> -->
-                    </div>
-                </div>
-
-                <hr class="my-4">
-                <!-- <LabelInput :model-value="userName" @update:modelValue="value => (userName = value)"></LabelInput> -->
-                <LabelInput v-model="userName" label="이름"></LabelInput>
-                <LabelTitle v-model:title="userName" label="이름"></LabelTitle>
-                <UserName v-model:firstName="firstName" v-model:lastName="lastName"></UserName>
-            </div>
-        </main>
-    </div>
+    <main>
+        <div class="container py-4">
+            <MyButton class="my-button" id="my-button" @say-hello="sayHello"></MyButton>
+            <LabelInput label="이름" data-id="이름입니다."></LabelInput>
+            <hr>
+            <FancyButton>Click!! <span style="color: red">@@@</span></FancyButton>
+            <FancyButton></FancyButton>
+            <hr>
+            <AppCard>
+                <!-- <template v-slot:header>제목입니다</template>
+                <template v-slot:default>내용입니다</template>
+                <template v-slot:footer>푸터입니다</template> -->
+                <!-- <template #header>제목입니다</template> -->
+                <!-- <template #default>내용입니다</template> -->
+                <template #[slotArgs]>제목입니다</template>
+                암시적으로 Default 슬롯입니다!
+                <template #footer>푸터입니다</template>
+            </AppCard>
+        </div>
+    </main>
 </template>
 
 <script>
-import { ref, reactive } from '@vue/reactivity';
-import AppCard from './AppCard.vue';
-import PostCreate from './PostCreate.vue';
+import { ref } from 'vue';
+import MyButton from './MyButton.vue';
 import LabelInput from './LabelInput.vue';
-import LabelTitle from './LabelTitle.vue';
-import UserName from './UserName.vue';
-
+import FancyButton from './FancyButton.vue';
+import AppCard from './AppCard.vue';
 export default {
     components: {
-        AppCard,
-        PostCreate,
+        MyButton,
         LabelInput,
-        LabelTitle,
-        UserName,
+        FancyButton,
+        AppCard,
     },
     setup () {
-        const post = reactive({
-            title: '제목2',
-            contents: '내용2',
-        });
-        const posts = reactive([
-            { id: 1, title: '제목1',  contents: '내용1', isLike: true, type: 'news' },
-            { id: 2, title: '제목2',  contents: '내용2', isLike: true, type: 'news' },
-            { id: 3, title: '제목3',  contents: '내용3', isLike: true, type: 'news' },
-            { id: 4, title: '제목4',  contents: '내용4', isLike: true, type: 'news' },
-            { id: 5, title: '제목5',  contents: '내용5', isLike: false, type: 'notice' },
-            { id: 6, title: '제목6',  contents: '내용6', isLike: false, type: 'notice' },
-        ]);
-        const createPost = newPost => {
-            console.log('newPost: ', newPost);
-            posts.push(newPost);
+        const sayHello = () => {
+            alert('안녕하세요');
         }
-
-        const userName = ref('');
-        const firstName = ref('');
-        const lastName = ref('');
-        return { post, posts, createPost, userName, firstName, lastName };
+        const slotArgs = ref('header');
+        return { sayHello, slotArgs }
     }
 }
 </script>
