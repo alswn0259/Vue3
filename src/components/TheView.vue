@@ -1,45 +1,18 @@
 <template>
     <main>
-        <div class="container py-4">
-            <MyButton class="my-button" id="my-button" @say-hello="sayHello"></MyButton>
-            <LabelInput label="이름" data-id="이름입니다."></LabelInput>
-            <hr>
-            <FancyButton>Click!! <span style="color: red">@@@</span></FancyButton>
-            <FancyButton></FancyButton>
-            <hr>
-            <AppCard>
-                <!-- <template v-slot:header>제목입니다</template>
-                <template v-slot:default>내용입니다</template>
-                <template v-slot:footer>푸터입니다</template> -->
-                <!-- <template #header>제목입니다</template> -->
-                <!-- <template #default>내용입니다</template> -->
-                <template #[slotArgs]>제목입니다</template>
-                암시적으로 Default 슬롯입니다!
-                <template #footer>푸터입니다</template>
-            </AppCard>
-        </div>
+        <TemplateRefs></TemplateRefs>
     </main>
 </template>
 
 <script>
-import { ref } from 'vue';
-import MyButton from './MyButton.vue';
-import LabelInput from './LabelInput.vue';
-import FancyButton from './FancyButton.vue';
-import AppCard from './AppCard.vue';
+import TemplateRefs from './TemplateRefs.vue';
 export default {
     components: {
-        MyButton,
-        LabelInput,
-        FancyButton,
-        AppCard,
+        TemplateRefs,
     },
-    setup () {
-        const sayHello = () => {
-            alert('안녕하세요');
-        }
-        const slotArgs = ref('header');
-        return { sayHello, slotArgs }
+    setup () {    
+
+        return {}
     }
 }
 </script>
