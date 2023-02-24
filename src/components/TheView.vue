@@ -1,20 +1,12 @@
 <template>
     <main>
-        <TemplateRefs></TemplateRefs>
+        <DynamicComponent></DynamicComponent>
     </main>
 </template>
 
-<script>
-import TemplateRefs from './TemplateRefs.vue';
-export default {
-    components: {
-        TemplateRefs,
-    },
-    setup () {    
+<script setup>
+import DynamicComponent from './DynamicComponent.vue';
 
-        return {}
-    }
-}
 </script>
 
 <style lang="scss" scoped>
